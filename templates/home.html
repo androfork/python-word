@@ -1,0 +1,86 @@
+{% block content %}
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Conversion</title>
+    <meta charset="utf-8">
+    
+	
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+	<script type="text/javascript">
+	
+		function fun()
+		{
+			//getting value of the text field ,then pass to int
+			var n=parseInt(document.getElementById('num').value);
+			// checking text is not null 
+			if(document.getElementById("num").value.trim() == "")
+			{
+				alert("Please enter Number...!");
+				return false;
+			}
+			// if the text is zero,then alert
+			if(n == 0)
+			{
+				alert("Number is equal to Zero.");
+				document.getElementById("num").style.visibility="visible";
+                document.getElementById("num").innerHTML="invalid";
+                document.getElementById("num").style.color="red";
+                document.getElementById("num").style.visibility="invalids";
+                num.style.border="2px solid red";
+			}
+			// if text is equal or greater than 10 lakh,then alert
+			if(n >= 1000000)
+			{
+				alert('The number is greater than or equal to 10 Lakh')
+				document.getElementById("num").style.visibility="visible";
+                document.getElementById("num").innerHTML="invalid";
+                document.getElementById("num").style.color="red";
+                document.getElementById("num").style.visibility="invalids";
+                num.style.border="2px solid red";
+			}
+			// if text is  less than zero,then alert
+			if(n < 0)
+			{
+				alert('The number is less than 0')
+				document.getElementById("num").style.visibility="visible";
+                document.getElementById("num").innerHTML="invalid";
+                document.getElementById("num").style.color="red";
+                document.getElementById("num").style.visibility="invalids";
+                num.style.border="2px solid red";
+			}
+		} 
+	</script>
+
+	</head>
+	<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">Number To Word Conversion</h2>
+				</div>
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4">
+
+					<form action="home"  method='POST' >
+						{% csrf_token %}
+						<input type="text" name="number" id="num" />
+						<input type="submit" onclick="fun()"/>
+					</form>
+				
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="row justify-content-center">
+		<font color="white">{{results}}</font>
+	</div>
+ 
+</body>
+</html>
+{% endblock %}
